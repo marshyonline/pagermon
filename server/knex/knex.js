@@ -1,2 +1,7 @@
-var config = require('../knexfile.js');
-module.exports = require('knex')(config);
+const { Model } = require('objection');
+const config = require('../knexfile.js');
+const Knex = require('knex');
+
+const knex = Knex(config);
+Model.knex(knex);
+module.exports = knex;

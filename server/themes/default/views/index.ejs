@@ -106,46 +106,46 @@
             <td class="shrink noMobile noSmall">{{message.date}}</td>
             <td class="shrink">{{message.timestamp}}</td>
             <% if (!hidesource || (login && user.role == 'admin')) { %>
-              <td class="shrink noMobile noSmall clickable-td" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'source'" popover-trigger="'outsideClick'" style="background-color: {{message.color || 'grey'}}; text-align: center;">
+              <td class="shrink noMobile noSmall clickable-td" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'source'" popover-trigger="'outsideClick'" style="background-color: {{message.alias.color || 'grey'}}; text-align: center;">
                 <span class="small" style="color: white; font-family: monospace;"><strong>{{message.source}}</strong></span>
               </td>
             <% } %>
             <% if (!hidecapcode || (login && user.role == 'admin')) { %>
-              <td class="shrink noMobile noSmall clickable-td" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'address'" popover-trigger="'outsideClick'" style="background-color: {{message.color || 'grey'}}; text-align: center;">
+              <td class="shrink noMobile noSmall clickable-td" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'address'" popover-trigger="'outsideClick'" style="background-color: {{message.alias.color || 'grey'}}; text-align: center;">
                 <span class="small" style="color: white; font-family: monospace;"><strong>{{message.address}}</strong></span>
               </td>
             <% } %>
-            <td class="shrink clickable-td" ng-if="message.agency" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'agency'" popover-trigger="'outsideClick'">
+            <td class="shrink clickable-td" ng-if="message.alias.agency" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'agency'" popover-trigger="'outsideClick'">
               <% if (iconsize == 'small') { %>
-              <span class="fa-stack fa-fw" style="color: {{message.color || 'grey'}};">
+              <span class="fa-stack fa-fw" style="color: {{message.alias.color || 'grey'}};">
               <% } else { %>
-              <span class="fa-stack fa-lg fa-fw" style="color: {{message.color || 'grey'}};">
+              <span class="fa-stack fa-lg fa-fw" style="color: {{message.alias.color || 'grey'}};">
               <% } %>
                 <i class="fa fa-circle fa-stack-2x"></i>
-                <i ng-if="message.icon" class="fa fa-{{message.icon}} fa-stack-1x fa-inverse"></i>
-                <i ng-if="!message.icon" class="fa fa-question fa-stack-1x fa-inverse"></i>
+                <i ng-if="message.alias.icon" class="fa fa-{{message.alias.icon}} fa-stack-1x fa-inverse"></i>
+                <i ng-if="!message.alias.icon" class="fa fa-question fa-stack-1x fa-inverse"></i>
               </span>
-              <strong style="vertical-align: middle;">{{message.agency || ''}}</strong>
+              <strong style="vertical-align: middle;">{{message.alias.agency || ''}}</strong>
             </td>
-            <td class="shrink" ng-if="!message.agency">
+            <td class="shrink" ng-if="!message.alias.agency">
               <% if (iconsize == 'small') { %>
-              <span class="fa-stack fa-fw" style="color: {{message.color || 'grey'}};">
+              <span class="fa-stack fa-fw" style="color: {{message.alias.color || 'grey'}};">
               <% } else { %>
-              <span class="fa-stack fa-lg fa-fw" style="color: {{message.color || 'grey'}};">
+              <span class="fa-stack fa-lg fa-fw" style="color: {{message.alias.color || 'grey'}};">
               <% } %>
                 <i class="fa fa-circle fa-stack-2x"></i>
-                <i ng-if="message.icon" class="fa fa-{{message.icon}} fa-stack-1x fa-inverse"></i>
-                <i ng-if="!message.icon" class="fa fa-question fa-stack-1x fa-inverse"></i>
+                <i ng-if="message.alias.icon" class="fa fa-{{message.alias.icon}} fa-stack-1x fa-inverse"></i>
+                <i ng-if="!message.alias.icon" class="fa fa-question fa-stack-1x fa-inverse"></i>
               </span>
               <strong style="vertical-align: middle;"></strong>
             </td>
             <td class="shrink noMobile clickable-td" ng-if="user"
                 uib-popover-template="'templates/popover.html'" popover-append-to-body=true
                 ng-click="popoverEl = 'alias'" popover-trigger="'outsideClick'">
-              <span style="color: Maroon;">{{message.alias || 'Unknown'}}</span>
+              <span style="color: Maroon;">{{message.alias.alias || 'Unknown'}}</span>
             </td>
             <td class="shrink noMobile" ng-if="!user">
-              <span>{{message.alias || ''}}</span>
+              <span>{{message.alias.alias || ''}}</span>
             </td>
             <td class="expand">
               <div highlight="message.message" replacement="init.replaceText" class="pagerMessage"></div>
@@ -260,7 +260,7 @@
             .factory('Api', ['$resource',
               function ($resource) {
                 return {
-                  Messages: $resource('/api/messages/'),
+                  Messages: $resource('/api/v2/messages/'),
                   NewMessage: $resource('/api/messages/:id', {id: '@id'}),
                   MessageSearch: $resource('/api/messageSearch/'),
                   Agencies: $resource('/api/capcodes/agency')

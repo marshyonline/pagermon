@@ -30,6 +30,8 @@ router.use(function (req, res, next) {
   next();
 });
 
+router.use('/v2', v2);
+
 // defaults
 var initData = {};
 initData.limit = nconf.get('messages:defaultLimit');
