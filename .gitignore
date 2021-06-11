@@ -90,6 +90,7 @@ client/config/backup.json
 #idea
 .idea
 server/sessions
+.vscode/launch.json
 
 #coverage
 server/coverage/

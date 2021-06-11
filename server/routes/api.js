@@ -9,6 +9,7 @@ var pluginHandler = require('../plugins/pluginHandler');
 var logger = require('../log');
 var db = require('../knex/knex.js');
 var converter = require('json-2-csv');
+const v2 = require('./api/v2/v2');
 
 var nconf = require('nconf');
 
