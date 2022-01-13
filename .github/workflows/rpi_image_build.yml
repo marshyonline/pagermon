@@ -1,6 +1,8 @@
 name: Build + Upload Raspberry Pi Image to release
 on:
-  push:
+  release:
+    types:
+      - created
 
 jobs:
   Build_Image:
@@ -14,17 +16,12 @@ jobs:
       #  uses: Nature40/pimod@v0.4.4
       #  with:
       #    pifile: builder.pifile
-      - name: Get archive
+      - name: Compress
         run: |
           touch /tmp/pagermon_pi.img
-      - name: CompressFiles
-        uses: stefh/ghaction-CompressFiles@v1
-        with:
-          path: /tmp
-          extensions: '.img'
-          tools: 'brotli,gzip'
+          tar -czvf /tmp/pagermon_pi.tgz /tmp/pagermon_pi.img
       - name: Upload Asset to Release
         uses: shogo82148/actions-upload-release-asset@v1.5.0
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.step1.outputs.archive }}
+          asset_path: /tmp/pagermon_pi.tgz
