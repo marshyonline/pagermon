@@ -1,8 +1,6 @@
 name: Build + Upload Raspberry Pi Image to release
 on:
-  release:
-    types:
-      - created
+  push:
 
 jobs:
   Build_Image:
