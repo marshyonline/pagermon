@@ -18,9 +18,9 @@ jobs:
       #    pifile: builder.pifile
       - name: Compress
         run: |
-          touch /tmp/pagermon_pi.img
+          echo "Compressing image" >> /tmp/pagermon_pi.img
           cd /tmp
-          tar -czvf pagermon_pi.tgz /tmp/pagermon_pi.img
+          tar -czvf pagermon_pi.tgz /tmp/pagermon_pi.img -C /tmp
       - name: Upload Asset to Release
         uses: shogo82148/actions-upload-release-asset@v1.5.0
         with:
