@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "Compressing image" >> /tmp/pagermon_pi.img
           cd /tmp
-          tar -czvf pagermon_pi.tgz /tmp/pagermon_pi.img -C /tmp
+          tar -czvf pagermon_pi.tgz -C /tmp pagermon_pi.img 
       - name: Upload Asset to Release
         uses: shogo82148/actions-upload-release-asset@v1.5.0
         with:
