@@ -17,12 +17,12 @@ jobs:
       - name: Get archive
         run: |
           touch /tmp/pagermon_pi.img
-      - name: Compress txt with gzip
-        uses: coco-hkk/compress-action@v2.1
+      - name: CompressFiles
+        uses: stefh/ghaction-CompressFiles@v1
         with:
-          file-suffix: 'img'
-          target-directory-path: '/tmp/'
-          compress-tool: 'gzip'
+          path: /tmp
+          extensions: '.img'
+          tools: 'brotli,gzip'
       - name: Upload Asset to Release
         uses: shogo82148/actions-upload-release-asset@v1.5.0
         with:
