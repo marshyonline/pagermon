@@ -20,7 +20,7 @@ jobs:
         run: |
           wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
           chmod +x pishrink.sh
-          ./pishrink.sh -vzap /tmp/pagermon-pi.img
+          sudo ./pishrink.sh -vzap /tmp/pagermon-pi.img
           cd /tmp
           ls -lah
       - name: Upload Asset to Release
