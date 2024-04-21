@@ -31,12 +31,12 @@ INSTALL . /home/pi/pagermon/
 RUN chown -R pi:pi /home/pi/pagermon
 
 #Install NVM
-RUN bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
+RUN bash -c "sudo -u pi curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
 
 #Install Node20
-RUN bash -c "nvm install 20"
-RUN bash -c "node -v"
-RUN bash -c "npm -v"
+RUN bash -c "sudo -u pi nvm install 20"
+RUN bash -c "sudo -u pi node -v"
+RUN bash -c "sudo -u pi npm -v"
 
 #Install Multimon-ng
 RUN bash -c "apt install -y cmake && \
