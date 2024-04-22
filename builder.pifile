@@ -9,20 +9,20 @@ RUN systemctl enable ssh
 RUN bash -c "echo "pi:raspberry" | chpasswd"
 
 #Update
-#RUN apt-get update
-#RUN apt-get upgrade -y
+RUN apt-get update
+RUN apt-get upgrade -y
 
 #Build Deps
-#RUN apt-get install build-essential -y
-#RUN apt install -y sqlite \
-#        python3 \
-#        git \
-#        vim \
-#        htop \
-#        curl \
-#        wget \
-#        unzip \
-#        rtl-sdr
+RUN apt-get install build-essential -y
+RUN apt install -y sqlite \
+        python3 \
+        git \
+        vim \
+        htop \
+        curl \
+        wget \
+        unzip \
+        rtl-sdr
 
 #Copy in Repo
 INSTALL . /home/pi/pagermon/
@@ -30,11 +30,7 @@ INSTALL . /home/pi/pagermon/
 #CHOWN pi
 RUN chown -R pi:pi /home/pi/pagermon
 
-#Install Node20
-RUN bash -c "apt-get install -y ca-certificates curl gnupg"
-RUN bash -c "curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/nodesource.gpg"
-RUN bash -c "echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list"
-RUN apt-get update
+#Install Node
 RUN apt-get -y install nodejs
 RUN nodejs -v
 
