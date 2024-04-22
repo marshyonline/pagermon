@@ -9,20 +9,20 @@ RUN systemctl enable ssh
 RUN bash -c "echo "pi:raspberry" | chpasswd"
 
 #Update
-RUN apt-get update
-RUN apt-get upgrade -y
+#RUN apt-get update
+#RUN apt-get upgrade -y
 
 #Build Deps
-RUN apt-get install build-essential -y
-RUN apt install -y sqlite \
-        python3 \
-        git \
-        vim \
-        htop \
-        curl \
-        wget \
-        unzip \
-        rtl-sdr
+#RUN apt-get install build-essential -y
+#RUN apt install -y sqlite \
+#        python3 \
+#        git \
+#        vim \
+#        htop \
+#        curl \
+#        wget \
+#        unzip \
+#        rtl-sdr
 
 #Copy in Repo
 INSTALL . /home/pi/pagermon/
@@ -31,7 +31,7 @@ INSTALL . /home/pi/pagermon/
 RUN chown -R pi:pi /home/pi/pagermon
 
 #Install NVM
-RUN bash -c "sudo -u pi curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
+RUN bash -c "sudo -u pi unset $NVM_DIR & curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
 
 #Install Node20
 RUN bash -c "sudo -u pi nvm install 20"
